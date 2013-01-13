@@ -1077,11 +1077,12 @@ static void update_current_flight_mode(void)
             }
             calc_throttle();
 
-            if (land_complete) {
+	// I want to suppress throttle earlier; trying it out here:
+        //    if (land_complete) {
                 // we are in the final stage of a landing - force
                 // zero throttle
                 g.channel_throttle.servo_out = 0;
-            }
+        //    }
             break;
 
         default:
