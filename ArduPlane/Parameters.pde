@@ -88,6 +88,13 @@ const AP_Param::Info var_info[] PROGMEM = {
     // @User: User
     GSCALAR(rudder_steer,           "RUDDER_STEER",   0),
 
+    // @Param: pitch_glide_cd
+    // @DisplayName: Gliding Angle
+    // @Description: Pitch at which airframe glides indefinitely (negative, hundredths of a degree) used for descending more quickly for planes that glide well
+    // @Units: centi-Degrees
+    // @User: Advanced
+    GSCALAR(pitch_glide_cd,           "PITCH_GLIDE_CD",   -2500),
+
     // @Param: land_pitch_cd
     // @DisplayName: Landing Pitch
     // @Description: Used in autoland for planes without airspeed sensors in hundredths of a degree
