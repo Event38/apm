@@ -106,6 +106,14 @@ static void handle_process_do_command()
         do_repeat_relay();
         break;
 
+
+#if PULSE == ENABLED
+    case MAV_CMD_DO_PULSE:
+        do_pulse();
+        break;
+#endif
+
+		
 #if CAMERA == ENABLED
     case MAV_CMD_DO_CONTROL_VIDEO:                      // Control on-board camera capturing. |Camera ID (-1 for all)| Transmission: 0: disabled, 1: enabled compressed, 2: enabled raw| Transmission mode: 0: video stream, >0: single images every n seconds (decimal)| Recording: 0: disabled, 1: enabled compressed, 2: enabled raw| Empty| Empty| Empty|
         break;

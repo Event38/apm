@@ -1125,6 +1125,11 @@ void GCS_MAVLINK::handleMessage(mavlink_message_t* msg)
             result = MAV_RESULT_ACCEPTED;
             break;
 
+		case MAV_CMD_DO_PULSE:
+			do_pulse();
+			result = MAV_RESULT_ACCEPTED;
+			break;
+			
         case MAV_CMD_DO_REPEAT_SERVO:
             do_repeat_servo(packet.param1, packet.param2, packet.param3, packet.param4);
             result = MAV_RESULT_ACCEPTED;
@@ -1267,6 +1272,7 @@ void GCS_MAVLINK::handleMessage(mavlink_message_t* msg)
         case MAV_CMD_DO_REPEAT_SERVO:
             param4 = tell_command.lng;
         case MAV_CMD_DO_REPEAT_RELAY:
+		case MAV_CMD_DO_PULSE:
         case MAV_CMD_DO_CHANGE_SPEED:
             param3 = tell_command.lat;
             param2 = tell_command.alt;
@@ -1275,6 +1281,7 @@ void GCS_MAVLINK::handleMessage(mavlink_message_t* msg)
 
         case MAV_CMD_DO_SET_PARAMETER:
         case MAV_CMD_DO_SET_RELAY:
+		case MAV_CMD_DO_PULSE:
         case MAV_CMD_DO_SET_SERVO:
             param2 = tell_command.alt;
             param1 = tell_command.p1;
@@ -1547,6 +1554,7 @@ void GCS_MAVLINK::handleMessage(mavlink_message_t* msg)
         case MAV_CMD_DO_REPEAT_SERVO:
             tell_command.lng = packet.param4;
         case MAV_CMD_DO_REPEAT_RELAY:
+		case MAV_CMD_DO_PULSE:
         case MAV_CMD_DO_CHANGE_SPEED:
             tell_command.lat = packet.param3;
             tell_command.alt = packet.param2;

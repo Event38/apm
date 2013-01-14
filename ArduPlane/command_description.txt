@@ -83,3 +83,5 @@ Command ID		Name						Parameter 1			Parameter 2			Parameter 3			Parameter 4
 0xB6 / 184		MAV_CMD_DO_REPEAT_SERVO		Servo number (5-8)	Cycle count			Cycle time (sec)	-
 				Note:  Max cycle time = 60 sec, A repeat relay or repeat servo command will cancel any current repeating event
 
+0xB9 / 185		MAV_CMD_DO_PULSE			Output Number (5-8)	Pulse Time			-					-
+				Note:  Right now hard-coded for output number 8, needs to be generalized
