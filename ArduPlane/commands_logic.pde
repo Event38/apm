@@ -363,6 +363,9 @@ static bool verify_nav_wp()
         gcs_send_text_fmt(PSTR("Reached Waypoint #%i dist %um"),
                           (unsigned)nav_command_index,
                           (unsigned)get_distance(&current_loc, &next_WP));
+		event_state.type = EVENT_TYPE_PULSE;
+		event_state.delay_ms = 1000;
+		do_camera_pulse(1);
         return true;
     }
 
@@ -622,4 +625,10 @@ static void do_repeat_relay()
     event_state.delay_ms        = next_nonnav_command.lat * 500.0;
     event_state.repeat          = next_nonnav_command.alt * 2;
     update_events();
+}
+
+static void do_camera_pulse(uint8_t state)
+{
+	digitalWrite(94, state);
+	
 }

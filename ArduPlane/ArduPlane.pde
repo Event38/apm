@@ -513,7 +513,8 @@ static int32_t wp_totalDistance;
 // event control state
 enum event_type { 
     EVENT_TYPE_RELAY=0,
-    EVENT_TYPE_SERVO=1
+    EVENT_TYPE_SERVO=1,
+	EVENT_TYPE_PULSE=2
 };
 
 static struct {
@@ -653,6 +654,7 @@ AP_Mount camera_mount2(&current_loc, g_gps, &ahrs, 1);
 //pinMode(camtrig, OUTPUT);			// these are free pins PE3(5), PH3(15), PH6(18), PB4(23), PB5(24), PL1(36), PL3(38), PA6(72), PA7(71), PK0(89), PK1(88), PK2(87), PK3(86), PK4(83), PK5(84), PK6(83), PK7(82)
 #endif
 
+
 ////////////////////////////////////////////////////////////////////////////////
 // Top-level logic
 ////////////////////////////////////////////////////////////////////////////////
@@ -661,6 +663,15 @@ AP_Mount camera_mount2(&current_loc, g_gps, &ahrs, 1);
 AP_Param param_loader(var_info, WP_START_BYTE);
 
 void setup() {
+	hal.gpio->pinMode(61, GPIO_OUTPUT);				// hardcoded in a random pin, a3, 4th from back on the row of aux pins on the left
+	hal.gpio->digitalWrite(61, LOW);
+
+	delay(3000);
+	digitalWrite(61, HIGH);
+
+        delay(5000);
+        digitalWrite(61, LOW);
+
     cliSerial = hal.console;
 
     // load the default values of variables listed in var_info[]
@@ -682,6 +693,7 @@ void setup() {
     airspeed.init(pitot_analog_source);
     memcheck_init();
     init_ardupilot();
+
 }
 
 void loop()

@@ -22,4 +22,5 @@
  *  //#define HIL_MODE            HIL_MODE_ATTITUDE
  *
  */
+#define HIL_MODE	HIL_MODE_ATTITUDE
 

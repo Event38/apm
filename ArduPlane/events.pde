@@ -118,6 +118,10 @@ static void update_events(void)
         case EVENT_TYPE_RELAY:
             relay.toggle();
             break;
+			
+		case EVENT_TYPE_PULSE:
+			do_camera_pulse(0);
+			break;
         }
 
         if (event_state.repeat > 0) {
