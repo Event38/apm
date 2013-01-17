@@ -663,14 +663,25 @@ AP_Mount camera_mount2(&current_loc, g_gps, &ahrs, 1);
 AP_Param param_loader(var_info, WP_START_BYTE);
 
 void setup() {
-	hal.gpio->pinMode(61, GPIO_OUTPUT);				// hardcoded in a random pin, a3, 4th from back on the row of aux pins on the left
-	hal.gpio->digitalWrite(61, LOW);
+	pinMode(61, GPIO_OUTPUT);				// hardcoded in a random pin, a3, 4th from back on the row of aux pins on the left
+	digitalWrite(61, LOW);
 
-	delay(3000);
-	digitalWrite(61, HIGH);
-
-        delay(5000);
+	delay(1000);
+	
+        digitalWrite(61, HIGH);
+        delay(25);
         digitalWrite(61, LOW);
+        delay(2000);
+        
+	digitalWrite(61, HIGH);
+        delay(25);
+        digitalWrite(61, LOW);
+        
+        delay(5000);
+	digitalWrite(61, HIGH);
+        delay(250);
+        digitalWrite(61, LOW);
+
 
     cliSerial = hal.console;
 
