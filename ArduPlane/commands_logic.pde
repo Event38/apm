@@ -359,12 +359,15 @@ static bool verify_nav_wp()
 {
     hold_course = -1;
     update_crosstrack();
-    if ((wp_distance > 0) && (wp_distance <= g.waypoint_radius)) {
+//    if ((wp_distance > 0) && (wp_distance <= g.waypoint_radius)) {
+    if (1) { // denwa
         gcs_send_text_fmt(PSTR("Reached Waypoint #%i dist %um"),
                           (unsigned)nav_command_index,
                           (unsigned)get_distance(&current_loc, &next_WP));
 		event_state.type = EVENT_TYPE_PULSE;
-		event_state.delay_ms = 1000;
+		event_state.start_time_ms = millis();
+		event_state.delay_ms = 25;
+		event_state.repeat = 1;
 		do_camera_pulse(1);
         return true;
     }
@@ -629,6 +632,6 @@ static void do_repeat_relay()
 
 static void do_camera_pulse(uint8_t state)
 {
-	digitalWrite(94, state);
-	
+	digitalWrite(61, state);
+	update_events();
 }
