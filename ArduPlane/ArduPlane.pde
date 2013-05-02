@@ -692,12 +692,10 @@ void setup() {
 
 void loop()
 {
-   digitalWrite(61, HIGH); //denwa
-   hal.gpio->write(61, 1); //denwa
+    digitalWrite(61, HIGH); //denwa
     // We want this to execute at 50Hz, but synchronised with the gyro/accel
     uint16_t num_samples = ins.num_samples_available();
-//    if (num_samples >= 1) {  // denwa
-    if(1){
+    if (num_samples >= 1) {  // denwa
         delta_ms_fast_loop      = millis() - fast_loopTimer_ms;
         load                = (float)(fast_loopTimeStamp_ms - fast_loopTimer_ms)/delta_ms_fast_loop;
         G_Dt                = (float)delta_ms_fast_loop / 1000.f;
@@ -979,8 +977,6 @@ static void one_second_loop()
 
     // send a heartbeat
     gcs_send_message(MSG_HEARTBEAT);
-	verify_nav_wp();  //denwa
-	digitalWrite(61, HIGH); //denwa
 }
 
 static void update_GPS(void)
